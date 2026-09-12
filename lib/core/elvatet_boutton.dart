@@ -31,7 +31,8 @@ class Boutton extends StatelessWidget {
           image.isEmpty ? SizedBox() : Image.asset(image),
           Text(
             "$name",
-            style: TextStyle(
+            style:
+            TextStyle(
               color: textColor,
               fontSize: 20,
               fontWeight: FontWeight.w500,

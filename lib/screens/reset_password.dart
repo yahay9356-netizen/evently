@@ -1,4 +1,4 @@
-import 'package:enntly/core/colors_maneger.dart';
+import 'package:enntly/core/colors_maneger_light.dart';
 import 'package:enntly/core/elvatet_boutton.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +8,9 @@ class Resetpassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorsManegerLightMode.backGround,
+      ),
       body: Column(
         children: [
           SizedBox(height: 200),

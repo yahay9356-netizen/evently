@@ -1,4 +1,4 @@
-import 'package:enntly/core/colors_maneger.dart';
+import 'package:enntly/core/colors_maneger_light.dart';
 import 'package:enntly/core/elvatet_boutton.dart';
 import 'package:enntly/core/text_button.dart';
 import 'package:enntly/core/text_filed.dart';
@@ -24,25 +24,21 @@ class Loginscreean extends StatelessWidget {
 
             Text(
               "Login to your account",
-              style: TextStyle(
-                color: ColorsManegerLightMode.darkBlue,
-                fontSize: 26,
-                fontWeight: FontWeight.w600,
-              ),
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
             const SizedBox(height: 24),
             Textfiled(
               hintText: "Enter your email",
               nameoficon: null,
               name2ofiocn: Icons.email,
-              controller: TextEditingController(),
+              // controller: TextEditingController(),
             ),
             const SizedBox(height: 16),
             Textfiled(
               hintText: "Enter the password",
               nameoficon: Icons.visibility,
               name2ofiocn: Icons.lock,
-              controller: TextEditingController(),
+              // controller: TextEditingController(),
             ),
             Row(
               children: [

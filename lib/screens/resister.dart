@@ -1,4 +1,4 @@
-import 'package:enntly/core/colors_maneger.dart';
+import 'package:enntly/core/colors_maneger_light.dart';
 import 'package:enntly/core/elvatet_boutton.dart';
 import 'package:enntly/core/text_button.dart';
 import 'package:enntly/core/text_filed.dart';
@@ -32,14 +32,14 @@ class Resisterscreen extends StatelessWidget {
             hintText: "Enter the name",
             name2ofiocn: Icons.person,
             nameoficon: null,
-            controller: TextEditingController(),
+
           ),
           SizedBox(height: 16),
           Textfiled(
             hintText: "Enter the eamil",
             nameoficon: null,
             name2ofiocn: Icons.email,
-            controller: TextEditingController(),
+            // controller: TextEditingController(),
           ),
           SizedBox(height: 16),
 
@@ -47,14 +47,14 @@ class Resisterscreen extends StatelessWidget {
             hintText: "Enter your password",
             nameoficon: Icons.visibility_off,
             name2ofiocn: Icons.lock,
-            controller:  TextEditingController(),
+            // controller:  TextEditingController(),
           ),
           SizedBox(height: 16),
           Textfiled(
             hintText: "Confirm your password",
             nameoficon: Icons.visibility_off,
             name2ofiocn: Icons.lock,
-            controller: TextEditingController(),
+            // controller: TextEditingController(),
           ),
           SizedBox(height: 52),
           Boutton(
