@@ -5,33 +5,40 @@ class Textfiled extends StatelessWidget {
   const Textfiled({
     super.key,
     required this.hintText,
-    required this.nameoficon,
-    required this.name2ofiocn,
+    this.nameoficon,
+    this.name2ofiocn,
+    required this.controller,
+    required this.validator,
   });
+
   final String? hintText;
   final IconData? nameoficon;
   final IconData? name2ofiocn;
+  final TextEditingController controller;
+  final String? Function(String?) validator;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
+      validator: validator,
       decoration: InputDecoration(
         filled: true,
         fillColor: ColorsManegerLightMode.storke,
-        hintText: "$hintText",
+        hintText: hintText,
         hintStyle: TextStyle(
           color: ColorsManegerLightMode.secText,
           fontSize: 20,
           fontWeight: FontWeight.w400,
         ),
-
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
           borderSide: BorderSide(
             color: ColorsManegerLightMode.storke,
             width: 2,
           ),
         ),
-        focusedBorder: OutlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
           borderSide: BorderSide(
             color: ColorsManegerLightMode.storke,

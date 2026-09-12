@@ -13,18 +13,13 @@ class Boutton extends StatelessWidget {
   final Color color;
   final String image;
   final Color textColor;
-    final void Function() onDo; 
+    final void Function() onDo;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onDo,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-        ),
-      ),
+      style: Theme.of(context).elevatedButtonTheme.style,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
