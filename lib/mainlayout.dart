@@ -4,13 +4,15 @@ import 'package:enntly/tabs/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class Mainlayout extends StatefulWidget {
+  const Mainlayout({super.key});
+ static const String name_main="Mainlayout";
+
   @override
   State<Mainlayout> createState() => _MainlayoutState();
 }
 
 class _MainlayoutState extends State<Mainlayout> {
   int index = 0;
-
   List<Widget> tabs = [Homescreen(), FavoritScreen(), ProfileScreen()];
 
   @override

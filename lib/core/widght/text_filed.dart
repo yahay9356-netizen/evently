@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:enntly/core/colors_maneger_light.dart';
+import 'package:enntly/core/Colors/colors_maneger_light.dart';
 
 class Textfiled extends StatelessWidget {
   const Textfiled({

@@ -1,4 +1,4 @@
-import 'package:enntly/core/colors_maneger_light.dart';
+import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:flutter/material.dart';
 
 class Textbutton extends StatelessWidget {

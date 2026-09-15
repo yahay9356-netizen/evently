@@ -1,7 +1,8 @@
-import 'package:enntly/core/colors_maneger_light.dart';
+import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/event.dart';
 import 'package:enntly/core/widght/tab_bar.dart';
 import 'package:enntly/models/catigory_model.dart';
+import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -104,7 +105,16 @@ class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
                 separatorBuilder: (context, index) => SizedBox(height: 20),
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 itemBuilder: (context, index) {
-                  return Event();
+                  return Event(
+                    event: EventModel(
+                      catigory: CategoryModel.subCategory?[0],
+                      titile: "Meeting for Updating The Development Method ",
+                      date: DateTime.now(),
+                      description:
+                          "Meeting for Updating The Development Method ",
+                      time: TimeOfDay.now(),
+                    ),
+                  );
                 },
               ),
             ),

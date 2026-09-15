@@ -1,7 +1,15 @@
-import 'package:enntly/core/colors_maneger_light.dart';
+import 'package:enntly/core/Colors/colors_maneger_light.dart';
+import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 
 class Event extends StatelessWidget {
+  final EventModel event;
+
+  const Event({
+    super.key,
+    required this.event,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,15 +28,10 @@ class Event extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: 50,
-              height: 30,
-              decoration: BoxDecoration(
-                color: ColorsManegerLightMode.backGround,
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-              ),
+            child: 
+            Card(
               child: Text(
-                "21 Jan",
+                event.date.toString(),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
@@ -38,9 +41,11 @@ class Event extends StatelessWidget {
             color: ColorsManegerLightMode.backGround,
             child: Row(
               children: [
-                Text(
-                  "Meeting for Updating The Development Method ",
-                  style: Theme.of(context).textTheme.labelSmall,
+                Expanded(
+                  child: Text(
+                    "${event.titile}",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
                 ),
                 Spacer(),
                 Icon(

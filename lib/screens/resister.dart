@@ -1,4 +1,4 @@
-import 'package:enntly/core/colors_maneger_light.dart';
+import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/elvatet_boutton.dart';
 import 'package:enntly/core/widght/text_button.dart';
 import 'package:enntly/core/widght/text_filed.dart';

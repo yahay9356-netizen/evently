@@ -1,7 +1,7 @@
-import 'package:enntly/core/colors_maneger_dark.dart';
+import 'package:enntly/core/Colors/colors_maneger_dark.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:enntly/core/colors_maneger_light.dart';
+import 'package:enntly/core/Colors/colors_maneger_light.dart';
 
 class ThemeManeger {
   static ThemeData lightTheme = ThemeData(
@@ -28,6 +28,10 @@ class ThemeManeger {
         color: Colors.black,
         fontWeight: FontWeight.w100,
       ),
+      bodyMedium: GoogleFonts.poppins(
+        color: ColorsManegerLightMode.mainText,
+        fontWeight: FontWeight.w500,
+      ),
       titleLarge: GoogleFonts.poppins(color: ColorsManegerLightMode.mainText),
       titleSmall: GoogleFonts.poppins(
         color: ColorsManegerLightMode.input,
@@ -43,6 +47,10 @@ class ThemeManeger {
         color: ColorsManegerLightMode.mainText,
         // fontSize: 16,
         fontWeight: FontWeight.w500,
+      ),
+      displayMedium: GoogleFonts.poppins(
+        color: ColorsManegerLightMode.mainText,
+        fontWeight: FontWeight.w600,
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -68,7 +76,8 @@ class ThemeManeger {
       type: BottomNavigationBarType.fixed,
       unselectedItemColor: ColorsManegerLightMode.secText,
     ),
-    cardTheme: CardThemeData(color: ColorsManegerLightMode.darkBlue),
+    // cardTheme: CardThemeData(color: ColorsManegerLightMode.darkBlue),
+    dividerTheme: DividerThemeData(color: ColorsManegerLightMode.input),
   );
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: ColorsManegerDark.mainBackground,
@@ -92,14 +101,19 @@ class ThemeManeger {
       displayMedium: GoogleFonts.poppins(
         color: ColorsManegerDark.input,
         fontSize: 16,
-        fontWeight: FontWeight.w200,
+        fontWeight: FontWeight.w600,
       ),
       labelMedium: GoogleFonts.poppins(
         color: ColorsManegerDark.input,
         fontWeight: FontWeight.w500,
       ),
+      bodyMedium: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontWeight: FontWeight.w500,
+      ),
     ),
     appBarTheme: AppBarTheme(backgroundColor: ColorsManegerDark.mainBackground),
+    cardColor: ColorsManegerLightMode.input,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: ColorsManegerLightMode.storke,
@@ -130,5 +144,6 @@ class ThemeManeger {
       unselectedItemColor: ColorsManegerLightMode.secText,
     ),
     cardTheme: CardThemeData(color: ColorsManegerDark.mainColor),
+    dividerTheme: DividerThemeData(color: ColorsManegerDark.mainBackground),
   );
 }
