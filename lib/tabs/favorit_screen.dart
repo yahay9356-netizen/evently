@@ -1,5 +1,8 @@
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
+import 'package:enntly/core/widght/event.dart';
 import 'package:enntly/core/widght/text_filed.dart';
+import 'package:enntly/models/catigory_model.dart';
+import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,6 +43,25 @@ class _FavoritScreenState extends State<FavoritScreen> {
                 ),
               ),
             ),
+                        Expanded(
+              child: ListView.separated(
+                itemCount: 16,
+                separatorBuilder: (context, index) => SizedBox(height: 20),
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                itemBuilder: (context, index) {
+                  return Event(
+                    event: EventModel(
+                      catigory: CategoryModel.subCategory?[0],
+                      titile: "Meeting for Updating The Development Method ",
+                      date: DateTime.now(),
+                      description:
+                          "Meeting for Updating The Development Method ",
+                      time: TimeOfDay.now(),
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),
