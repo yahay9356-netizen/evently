@@ -1,5 +1,6 @@
-import 'package:enntly/core/colors_maneger_light.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:enntly/core/colors_maneger_light.dart';
 
 class Textfiled extends StatelessWidget {
   const Textfiled({
@@ -22,10 +23,17 @@ class Textfiled extends StatelessWidget {
     return TextFormField(
       controller: controller,
       validator: validator,
-      decoration: InputDecoration(
+      textAlignVertical: TextAlignVertical.center,
+      decoration:
+      InputDecoration(
         filled: true,
         fillColor: ColorsManegerLightMode.storke,
         hintText: hintText,
+        hintStyle: GoogleFonts.poppins(
+          color: ColorsManegerLightMode.secText,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
         prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         suffixIcon: suffixIcon != null ? Icon(suffixIcon) : null,
       ),

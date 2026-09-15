@@ -1,8 +1,10 @@
 import 'package:enntly/core/colors_maneger_light.dart';
-import 'package:enntly/core/elvatet_boutton.dart';
-import 'package:enntly/core/text_button.dart';
-import 'package:enntly/core/text_filed.dart';
+import 'package:enntly/core/widght/elvatet_boutton.dart';
+import 'package:enntly/core/widght/text_button.dart';
+import 'package:enntly/core/widght/text_filed.dart';
 import 'package:flutter/material.dart';
+
+import '../mainlayout.dart';
 
 class Resisterscreen extends StatefulWidget {
   const Resisterscreen({super.key});
@@ -55,8 +57,8 @@ class _ResisterscreenState extends State<Resisterscreen> {
               ),
               Textfiled(
                 hintText: "Enter the name",
-                name2ofiocn: Icons.person,
-                nameoficon: null,
+                prefixIcon: Icons.person,
+                suffixIcon: null,
                 controller: namecontroller,
                 validator: (input) {
                   if (input == null || input.trim().isEmpty) {
@@ -69,14 +71,13 @@ class _ResisterscreenState extends State<Resisterscreen> {
               SizedBox(height: 16),
               Textfiled(
                 hintText: "Enter the eamil",
-                nameoficon: null,
-                name2ofiocn: Icons.email,
+                suffixIcon: null,
+                prefixIcon: Icons.email,
                 controller: emailcontroller,
                 validator: (input) {
-                  if (input==null||input.trim().isEmpty) {
+                  if (input == null || input.trim().isEmpty) {
                     return "Email is required";
-                  }
-                  else if (!isvalidEmail(input)) {
+                  } else if (!isvalidEmail(input)) {
                     return "Bad format";
                   }
                   return null;
@@ -86,11 +87,11 @@ class _ResisterscreenState extends State<Resisterscreen> {
 
               Textfiled(
                 hintText: "Enter your password",
-                nameoficon: Icons.visibility_off,
-                name2ofiocn: Icons.lock,
+                suffixIcon: Icons.visibility_off,
+                prefixIcon: Icons.lock,
                 controller: passwordcontroller,
                 validator: (input) {
-                  if (input == null||input.trim().isEmpty) {
+                  if (input == null || input.trim().isEmpty) {
                     return "the password is required";
                   }
                   if (isValidPassword(input)) {
@@ -103,20 +104,20 @@ class _ResisterscreenState extends State<Resisterscreen> {
               SizedBox(height: 16),
               Textfiled(
                 hintText: "Confirm your password",
-                nameoficon: Icons.visibility_off,
-                name2ofiocn: Icons.lock,
+                suffixIcon: Icons.visibility_off,
+                prefixIcon: Icons.lock,
                 controller: TextEditingController(),
-                  validator: (input) {
-                    if (input == null || input.trim().isEmpty) {
-                      return "Please confirm your password";
-                    }
-
-                    if (input != passwordcontroller.text) {
-                      return "Passwords do not match";
-                    }
-
-                    return null;
+                validator: (input) {
+                  if (input == null || input.trim().isEmpty) {
+                    return "Please confirm your password";
                   }
+
+                  if (input != passwordcontroller.text) {
+                    return "Passwords do not match";
+                  }
+
+                  return null;
+                },
               ),
               SizedBox(height: 52),
               Boutton(
@@ -126,7 +127,11 @@ class _ResisterscreenState extends State<Resisterscreen> {
                 textColor: ColorsManegerLightMode.backGround,
                 onDo: () {
                   createAccount();
-                }
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Homescreen()),
+                  // );
+                },
               ),
               SizedBox(height: 42),
               Row(
@@ -151,7 +156,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
     );
   }
 
-  isvalidEmail(String email) {
+  bool isvalidEmail(String email) {
     return RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(email);
@@ -164,8 +169,11 @@ class _ResisterscreenState extends State<Resisterscreen> {
   }
 
   void createAccount() {
-    if (formkey.currentState!.validate() == false) {
-      return;
+    if (formkey.currentState!.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Mainlayout()),
+      );
     }
   }
 }

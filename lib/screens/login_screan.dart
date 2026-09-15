@@ -1,10 +1,12 @@
 import 'package:enntly/core/colors_maneger_light.dart';
-import 'package:enntly/core/elvatet_boutton.dart';
-import 'package:enntly/core/text_button.dart';
-import 'package:enntly/core/text_filed.dart';
+import 'package:enntly/core/widght/elvatet_boutton.dart';
+import 'package:enntly/core/widght/text_button.dart';
+import 'package:enntly/core/widght/text_filed.dart';
 import 'package:enntly/screens/reset_password.dart';
 import 'package:enntly/screens/resister.dart';
 import 'package:flutter/material.dart';
+
+import '../mainlayout.dart';
 
 class Loginscreean extends StatelessWidget {
   static const String name = "LoginScreen";
@@ -14,15 +16,14 @@ class Loginscreean extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: 
-        SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 50),
               Image.asset("assets/logo.png"),
               const SizedBox(height: 50),
-          
+
               Text(
                 "Login to your account",
                 style: Theme.of(context).textTheme.headlineLarge,
@@ -30,20 +31,18 @@ class Loginscreean extends StatelessWidget {
               const SizedBox(height: 24),
               Textfiled(
                 hintText: "Enter your email",
-                nameoficon: null,
-                name2ofiocn: Icons.email,
-                  controller: TextEditingController(),
-                validator: (input){},
+                prefixIcon: null,
+                suffixIcon: Icons.email,
+                controller: TextEditingController(),
+                validator: (input) => null,
               ),
               const SizedBox(height: 16),
               Textfiled(
                 hintText: "Enter the password",
-                nameoficon: Icons.visibility,
-                name2ofiocn: Icons.lock,
+                prefixIcon: Icons.visibility,
+                suffixIcon: Icons.lock,
                 controller: TextEditingController(),
-                validator: (input){
-          
-                },
+                validator: (input) => null,
               ),
               Row(
                 children: [
@@ -53,7 +52,9 @@ class Loginscreean extends StatelessWidget {
                     onDo: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Resetpassword()),
+                        MaterialPageRoute(
+                          builder: (context) => Resetpassword(),
+                        ),
                       );
                     },
                   ),
@@ -64,7 +65,12 @@ class Loginscreean extends StatelessWidget {
                 color: ColorsManegerLightMode.darkBlue,
                 textColor: ColorsManegerLightMode.backGround,
                 image: "",
-                onDo: () {},
+                onDo: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Mainlayout()),
+                  );
+                },
               ),
               const SizedBox(height: 48),
               Row(
@@ -83,7 +89,9 @@ class Loginscreean extends StatelessWidget {
                     onDo: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Resisterscreen()),
+                        MaterialPageRoute(
+                          builder: (context) => Resisterscreen(),
+                        ),
                       );
                     },
                   ),
@@ -104,7 +112,6 @@ class Loginscreean extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 40),
-          
             ],
           ),
         ),

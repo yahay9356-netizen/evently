@@ -1,7 +1,7 @@
-import 'package:enntly/core/colors_maneger_light.dart';
 import 'package:enntly/core/colors_maneger_dark.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:enntly/core/colors_maneger_light.dart';
 
 class ThemeManeger {
   static ThemeData lightTheme = ThemeData(
@@ -17,16 +17,118 @@ class ThemeManeger {
         ),
       ),
     ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorsManegerLightMode.backGround,
+    ),
     textTheme: TextTheme(
-      headlineLarge: GoogleFonts.poppins(
+      headlineSmall: GoogleFonts.poppins(
         color: ColorsManegerLightMode.darkBlue,
       ),
+      bodyLarge: GoogleFonts.poppins(
+        color: Colors.black,
+        fontWeight: FontWeight.w100,
+      ),
+      titleLarge: GoogleFonts.poppins(color: ColorsManegerLightMode.mainText),
+      titleSmall: GoogleFonts.poppins(
+        color: ColorsManegerLightMode.input,
+        fontWeight: FontWeight.w100,
+      ),
+      titleMedium: GoogleFonts.poppins(color: ColorsManegerLightMode.darkBlue),
+      headlineMedium: GoogleFonts.poppins(
+        color: ColorsManegerLightMode.mainText,
+        fontSize: 16,
+        fontWeight: FontWeight.w200,
+      ),
+      labelMedium: GoogleFonts.poppins(
+        color: ColorsManegerLightMode.mainText,
+        // fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: ColorsManegerLightMode.mainText,
+      hintStyle: TextStyle(
+        color: ColorsManegerLightMode.storke,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderSide: BorderSide(color: ColorsManegerLightMode.storke, width: 2),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderSide: BorderSide(color: ColorsManegerLightMode.storke, width: 2),
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: ColorsManegerLightMode.backGround,
+      selectedItemColor: ColorsManegerLightMode.darkBlue,
+      type: BottomNavigationBarType.fixed,
+      unselectedItemColor: ColorsManegerLightMode.secText,
+    ),
+    cardTheme: CardThemeData(color: ColorsManegerLightMode.darkBlue),
   );
   static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: ColorsManegerDark.MainColor,
+    scaffoldBackgroundColor: ColorsManegerDark.mainBackground,
     textTheme: TextTheme(
-      headlineLarge: TextStyle(color: ColorsManegerDark.input),
+      headlineLarge: GoogleFonts.poppins(color: ColorsManegerDark.input),
+      bodyLarge: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontWeight: FontWeight.w600,
+      ),
+      titleLarge: GoogleFonts.poppins(color: ColorsManegerDark.input),
+      titleSmall: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontWeight: FontWeight.w100,
+      ),
+      titleMedium: GoogleFonts.poppins(color: ColorsManegerDark.input),
+      headlineMedium: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontSize: 16,
+        fontWeight: FontWeight.w200,
+      ),
+      displayMedium: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontSize: 16,
+        fontWeight: FontWeight.w200,
+      ),
+      labelMedium: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontWeight: FontWeight.w500,
+      ),
     ),
+    appBarTheme: AppBarTheme(backgroundColor: ColorsManegerDark.mainBackground),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: ColorsManegerLightMode.storke,
+      hintStyle: TextStyle(
+        color: ColorsManegerLightMode.secText,
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderSide: BorderSide(
+          color: ColorsManegerDark.mainBackground,
+          width: 2,
+        ),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderSide: BorderSide(
+          color: ColorsManegerDark.mainBackground,
+          width: 2,
+        ),
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: ColorsManegerDark.mainBackground,
+      selectedItemColor: ColorsManegerLightMode.darkBlue,
+      type: BottomNavigationBarType.fixed,
+      unselectedItemColor: ColorsManegerLightMode.secText,
+    ),
+    cardTheme: CardThemeData(color: ColorsManegerDark.mainColor),
   );
 }

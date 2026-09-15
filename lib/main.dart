@@ -1,4 +1,5 @@
-import 'package:enntly/core/Theme_maneger.dart';
+import 'package:enntly/core/theme_maneger.dart';
+import 'package:enntly/tabs/home_screen.dart';
 import 'package:enntly/screens/login_screan.dart';
 import 'package:enntly/screens/resister.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ class Eventlyapp extends StatelessWidget {
         routes: {
           Loginscreean.name: (context) => Loginscreean(),
           Resisterscreen.name: (context) => Resisterscreen(),
+
+          Homescreen.name: (context) => Homescreen(),
         },
         theme: ThemeManeger.lightTheme,
         darkTheme: ThemeManeger.darkTheme,
