@@ -23,7 +23,6 @@ class Loginscreean extends StatelessWidget {
               const SizedBox(height: 50),
               Image.asset("assets/logo.png"),
               const SizedBox(height: 50),
-
               Text(
                 "Login to your account",
                 style: Theme.of(context).textTheme.headlineLarge,

@@ -5,7 +5,7 @@ class EventModel {
   CategoryModel? catigory;
   String? titile;
   String? description;
-  DateTime? date;
+  String? date;
   TimeOfDay? time;
   EventModel({
     required this.catigory,

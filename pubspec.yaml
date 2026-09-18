@@ -38,6 +38,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_screenutil_plus: ^1.6.0
   flutter_switch: ^0.3.2
+  intl: ^0.20.3
 
 dev_dependencies:
   flutter_test:

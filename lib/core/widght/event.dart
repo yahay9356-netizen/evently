@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 class Event extends StatelessWidget {
   final EventModel event;
 
-  const Event({
-    super.key,
-    required this.event,
-  });
+  const Event({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +25,7 @@ class Event extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: 
-            Card(
+            child: Card(
               child: Text(
                 event.date.toString(),
                 style: Theme.of(context).textTheme.titleMedium,
@@ -44,7 +40,11 @@ class Event extends StatelessWidget {
                 Expanded(
                   child: Text(
                     "${event.titile}",
-                    style: Theme.of(context).textTheme.labelSmall,
+                    style: TextStyle(
+                      color: ColorsManegerLightMode.mainText,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 Spacer(),

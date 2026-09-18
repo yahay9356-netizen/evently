@@ -5,6 +5,7 @@ import 'package:enntly/models/catigory_model.dart';
 import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class FavoritScreen extends StatefulWidget {
   const FavoritScreen({super.key});
@@ -14,6 +15,8 @@ class FavoritScreen extends StatefulWidget {
 }
 
 class _FavoritScreenState extends State<FavoritScreen> {
+  String time=DateFormat.d().add_MMM().format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +46,7 @@ class _FavoritScreenState extends State<FavoritScreen> {
                 ),
               ),
             ),
-                        Expanded(
+            Expanded(
               child: ListView.separated(
                 itemCount: 16,
                 separatorBuilder: (context, index) => SizedBox(height: 20),
@@ -52,8 +55,9 @@ class _FavoritScreenState extends State<FavoritScreen> {
                   return Event(
                     event: EventModel(
                       catigory: CategoryModel.subCategory?[0],
-                      titile: "Meeting for Updating The Development Method ",
-                      date: DateTime.now(),
+                      titile:
+                          "Meeting for Updating The Development Method ",
+                      date:time,
                       description:
                           "Meeting for Updating The Development Method ",
                       time: TimeOfDay.now(),
@@ -61,7 +65,7 @@ class _FavoritScreenState extends State<FavoritScreen> {
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -45,12 +45,15 @@ class ThemeManeger {
       ),
       labelMedium: GoogleFonts.poppins(
         color: ColorsManegerLightMode.mainText,
-        // fontSize: 16,
         fontWeight: FontWeight.w500,
       ),
       displayMedium: GoogleFonts.poppins(
         color: ColorsManegerLightMode.mainText,
         fontWeight: FontWeight.w600,
+      ),
+      labelSmall: GoogleFonts.poppins(
+        color: ColorsManegerDark.mainColor,
+        fontWeight: FontWeight.w300,
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -110,6 +113,10 @@ class ThemeManeger {
       bodyMedium: GoogleFonts.poppins(
         color: ColorsManegerDark.input,
         fontWeight: FontWeight.w500,
+      ),
+      labelSmall: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontWeight: FontWeight.w300,
       ),
     ),
     appBarTheme: AppBarTheme(backgroundColor: ColorsManegerDark.mainBackground),

@@ -4,6 +4,7 @@ import 'package:enntly/core/widght/tab_bar.dart';
 import 'package:enntly/models/catigory_model.dart';
 import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -17,7 +18,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
   late TabController _controller;
   int tabIndex = 0;
-
+String time=DateFormat.d().add_MMM().format(DateTime.now());
   @override
   void initState() {
     super.initState();
@@ -26,7 +27,14 @@ class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryModel.subCategory ?? [];
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        shape: CircleBorder(),
+        backgroundColor: ColorsManegerLightMode.darkBlue,
+        child: Icon(Icons.add, color: ColorsManegerLightMode.input),
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -109,7 +117,7 @@ class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
                     event: EventModel(
                       catigory: CategoryModel.subCategory?[0],
                       titile: "Meeting for Updating The Development Method ",
-                      date: DateTime.now(),
+                      date:time,
                       description:
                           "Meeting for Updating The Development Method ",
                       time: TimeOfDay.now(),
