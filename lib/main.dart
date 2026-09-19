@@ -6,7 +6,10 @@ import 'package:enntly/tabs/home_screen.dart';
 import 'package:enntly/screens/login_screan.dart';
 import 'package:enntly/screens/resister.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
+
+import 'l10n/app_localizations.dart';
 
 void main() {
   runApp(Eventlyapp());
@@ -23,6 +26,18 @@ class Eventlyapp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute:Loginscreean.name,
+        localizationsDelegates:  [
+          AppLocalizations.delegate,
+
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale("en"),
+          Locale("ar"),
+        ],
+        locale:Locale("en"),
         routes: {
           Loginscreean.name: (context) => Loginscreean(),
           Resisterscreen.name: (context) => Resisterscreen(),

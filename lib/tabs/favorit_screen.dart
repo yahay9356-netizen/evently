@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
+import '../l10n/app_localizations.dart';
+
 class FavoritScreen extends StatefulWidget {
   const FavoritScreen({super.key});
   static const name = "favorite";
@@ -28,7 +30,7 @@ class _FavoritScreenState extends State<FavoritScreen> {
               child: TextField(
                 decoration: InputDecoration(
                   fillColor: ColorsManegerLightMode.storke,
-                  hintText: "Search for event",
+                  hintText: AppLocalizations.of(context)!.search_for_event,
                   hintStyle: GoogleFonts.poppins(
                     color: ColorsManegerLightMode.secText,
                     fontSize: 14,
@@ -54,7 +56,7 @@ class _FavoritScreenState extends State<FavoritScreen> {
                 itemBuilder: (context, index) {
                   return Event(
                     event: EventModel(
-                      catigory: CategoryModel.subCategory?[0],
+                      catigory: CategoryModel.getSubCategory(context)[0],
                       titile:
                           "Meeting for Updating The Development Method ",
                       date:time,

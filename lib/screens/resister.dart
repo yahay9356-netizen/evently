@@ -4,6 +4,7 @@ import 'package:enntly/core/widght/text_button.dart';
 import 'package:enntly/core/widght/text_filed.dart';
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import '../mainlayout.dart';
 
 class Resisterscreen extends StatefulWidget {
@@ -47,7 +48,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
-                  "Create your account",
+                  AppLocalizations.of(context)!.create_account,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -56,7 +57,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
                 ),
               ),
               Textfiled(
-                hintText: "Enter the name",
+                hintText: AppLocalizations.of(context)!.enter_your_name,
                 prefixIcon: Icons.person,
                 suffixIcon: null,
                 controller: namecontroller,
@@ -70,7 +71,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
               ),
               SizedBox(height: 16),
               Textfiled(
-                hintText: "Enter the eamil",
+                hintText: AppLocalizations.of(context)!.enter_your_email,
                 suffixIcon: null,
                 prefixIcon: Icons.email,
                 controller: emailcontroller,
@@ -86,7 +87,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
               SizedBox(height: 16),
 
               Textfiled(
-                hintText: "Enter your password",
+                hintText:AppLocalizations.of(context)!.enter_your_password,
                 suffixIcon: Icons.visibility_off,
                 prefixIcon: Icons.lock,
                 controller: passwordcontroller,
@@ -103,7 +104,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
               ),
               SizedBox(height: 16),
               Textfiled(
-                hintText: "Confirm your password",
+                hintText: AppLocalizations.of(context)!.confirm_password,
                 suffixIcon: Icons.visibility_off,
                 prefixIcon: Icons.lock,
                 controller: TextEditingController(),
@@ -121,7 +122,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
               ),
               SizedBox(height: 52),
               Boutton(
-                name: "Sign up",
+                name: AppLocalizations.of(context)!.sing_up,
                 color: ColorsManegerLightMode.darkBlue,
                 image: "",
                 textColor: ColorsManegerLightMode.backGround,
@@ -138,7 +139,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Already have an account?",
+                  AppLocalizations.of(context)!.already_have_an_account,
                     style: TextStyle(
                       color: ColorsManegerLightMode.secText,
                       fontSize: 20,

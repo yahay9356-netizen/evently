@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../l10n/app_localizations.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -12,6 +14,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   children: [
                     Text(
-                      "Dark Mode",
+                    AppLocalizations.of(context)!.dark,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Spacer(),
@@ -75,13 +78,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   children: [
                     Text(
-                      "Language",
+                      AppLocalizations.of(context)!.language,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Spacer(),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: ColorsManegerLightMode.darkBlue,
+                    PopupMenuButton<String>(
+                      onSelected: (value) {
+
+                      },
+                      itemBuilder: (BuildContext context) {
+                        return [
+                          PopupMenuItem<String>(
+                            value: "English",
+                            child: Text("English"),
+                          ),
+                          PopupMenuItem<String>(
+                            value: "Arabic",
+                            child: Text("Arabic"),
+                          ),
+                        ];
+                      },
+                      child: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: ColorsManegerLightMode.darkBlue,
+                      ),
                     ),
                   ],
                 ),
@@ -98,7 +118,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   children: [
                     Text(
-                      "Log out",
+                      AppLocalizations.of(context)!.logout,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Spacer(),

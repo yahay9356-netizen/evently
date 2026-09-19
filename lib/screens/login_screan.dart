@@ -2,6 +2,7 @@ import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/elvatet_boutton.dart';
 import 'package:enntly/core/widght/text_button.dart';
 import 'package:enntly/core/widght/text_filed.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 import 'package:enntly/screens/reset_password.dart';
 import 'package:enntly/screens/resister.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +25,12 @@ class Loginscreean extends StatelessWidget {
               Image.asset("assets/logo.png"),
               const SizedBox(height: 50),
               Text(
-                "Login to your account",
+                AppLocalizations.of(context)!.log_in_to_your_account,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(height: 24),
               Textfiled(
-                hintText: "Enter your email",
+                hintText: AppLocalizations.of(context)!.enter_your_email,
                 prefixIcon: null,
                 suffixIcon: Icons.email,
                 controller: TextEditingController(),
@@ -37,7 +38,7 @@ class Loginscreean extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Textfiled(
-                hintText: "Enter the password",
+                hintText: AppLocalizations.of(context)!.enter_your_password,
                 prefixIcon: Icons.visibility,
                 suffixIcon: Icons.lock,
                 controller: TextEditingController(),
@@ -47,7 +48,7 @@ class Loginscreean extends StatelessWidget {
                 children: [
                   const Spacer(),
                   Textbutton(
-                    nameOFText: "Forget Password ?",
+                    nameOFText: AppLocalizations.of(context)!.forgot_password,
                     onDo: () {
                       Navigator.push(
                         context,
@@ -60,7 +61,7 @@ class Loginscreean extends StatelessWidget {
                 ],
               ),
               Boutton(
-                name: "Login",
+                name: AppLocalizations.of(context)!.login,
                 color: ColorsManegerLightMode.darkBlue,
                 textColor: ColorsManegerLightMode.backGround,
                 image: "",
@@ -76,7 +77,7 @@ class Loginscreean extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don’t have an account ?",
+                  AppLocalizations.of(context)!.dont_have_an_account,
                     style: TextStyle(
                       color: ColorsManegerLightMode.secText,
                       fontSize: 14,
@@ -84,7 +85,7 @@ class Loginscreean extends StatelessWidget {
                     ),
                   ),
                   Textbutton(
-                    nameOFText: "Signup",
+                    nameOFText: AppLocalizations.of(context)!.sing_up,
                     onDo: () {
                       Navigator.push(
                         context,

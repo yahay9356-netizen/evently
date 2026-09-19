@@ -2,6 +2,8 @@ import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/elvatet_boutton.dart';
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
+
 class Resetpassword extends StatelessWidget {
   const Resetpassword({super.key});
   static const String name = "RestThePassword";
@@ -17,7 +19,7 @@ class Resetpassword extends StatelessWidget {
           Image.asset("assets/rest.png"),
           SizedBox(height: 50),
           Boutton(
-            name: "Reset password",
+            name: AppLocalizations.of(context)!.forgot_password,
             color: ColorsManegerLightMode.darkBlue,
             image: "",
             textColor: ColorsManegerLightMode.backGround,

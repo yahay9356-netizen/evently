@@ -3,6 +3,8 @@ import 'package:enntly/tabs/home_screen.dart';
 import 'package:enntly/tabs/profile_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'l10n/app_localizations.dart';
+
 class Mainlayout extends StatefulWidget {
   const Mainlayout({super.key});
  static const String name_main="Mainlayout";
@@ -29,15 +31,15 @@ class _MainlayoutState extends State<Mainlayout> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(index == 0 ? Icons.home : Icons.home_outlined),
-            label: "Home",
+            label: AppLocalizations.of(context)!.home
           ),
           BottomNavigationBarItem(
             icon: Icon(index == 1 ? Icons.favorite : Icons.favorite_border),
-            label: "favorite",
+            label: AppLocalizations.of(context)!.favorite
           ),
           BottomNavigationBarItem(
             icon: Icon(index == 2 ? Icons.person : Icons.person_2_outlined),
-            label: "profile",
+            label: AppLocalizations.of(context)!.profile
           ),
         ],
       ),

@@ -6,6 +6,8 @@ import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../l10n/app_localizations.dart';
+
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
 
@@ -27,7 +29,7 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
-    final categories = CategoryModel.subCategory ?? [];
+    final categories = CategoryModel.getSubCategory(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -45,7 +47,7 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
                     Column(
                       children: [
                         Text(
-                          "Welcome Back ✨",
+        AppLocalizations.of(context)!.welcome_back,
                           style: TextStyle(
                             color: ColorsManegerLightMode.secText,
                             fontSize: 20,
@@ -90,7 +92,7 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
               tabAlignment: TabAlignment.start,
               indicatorColor: Colors.transparent,
               dividerColor: Colors.transparent,
-              tabs: CategoryModel.subCategory!.asMap().entries.map((entry) {
+              tabs: CategoryModel.getSubCategory(context).asMap().entries.map((entry) {
                 int index = entry.key;
                 var category = entry.value;
                 return CustomTabBar(
@@ -115,7 +117,7 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
                 itemBuilder: (context, index) {
                   return Event(
                     event: EventModel(
-                      catigory: CategoryModel.subCategory?[0],
+                      catigory: CategoryModel.getSubCategory(context)[0],
                       titile: "Meeting for Updating The Development Method ",
                       date:time,
                       description:

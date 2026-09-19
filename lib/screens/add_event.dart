@@ -6,9 +6,11 @@ import 'package:enntly/models/catigory_model.dart';
 import 'package:flutter/material.dart';
 
 import '../core/widght/elvatet_boutton.dart';
+import '../l10n/app_localizations.dart';
 
 class AddEvent extends StatefulWidget {
   const AddEvent({super.key});
+
   static const String name = "AddEvent";
 
   @override
@@ -21,6 +23,7 @@ class _AddEventState extends State<AddEvent>
   late final TabController controller;
   DateTime dateTime = DateTime.now();
   TimeOfDay timeNow = TimeOfDay.now();
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +47,7 @@ class _AddEventState extends State<AddEvent>
                 children: [
                   IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
                   SizedBox(width: 120),
-                  Text("Add event"),
+                  Text(AppLocalizations.of(context)!.add_event),
                 ],
               ),
               Container(
@@ -70,21 +73,23 @@ class _AddEventState extends State<AddEvent>
                 tabAlignment: TabAlignment.start,
                 indicatorColor: Colors.transparent,
                 dividerColor: Colors.transparent,
-                tabs: CategoryModel.subCategory!.asMap().entries.map((entry) {
-                  int index = entry.key;
-                  var category = entry.value;
-                  return CustomTabBar(
-                    selelectedColor: ColorsManegerLightMode.darkBlue,
-                    unselelectedColor: ColorsManegerLightMode.input,
-                    selectedTextColor: ColorsManegerLightMode.input,
-                    unselectedTextColor: ColorsManegerLightMode.mainText,
-                    isSelelected: tabindex == index,
-                    icon: category.icon,
-                    text: category.name,
-                    SelectedFgColor: ColorsManegerLightMode.input,
-                    UnSelectedFgColor: ColorsManegerLightMode.darkBlue,
-                  );
-                }).toList(),
+                tabs: CategoryModel.getSubCategory(context).asMap().entries.map(
+                  (entry) {
+                    int index = entry.key;
+                    var category = entry.value;
+                    return CustomTabBar(
+                      selelectedColor: ColorsManegerLightMode.darkBlue,
+                      unselelectedColor: ColorsManegerLightMode.input,
+                      selectedTextColor: ColorsManegerLightMode.input,
+                      unselectedTextColor: ColorsManegerLightMode.mainText,
+                      isSelelected: tabindex == index,
+                      icon: category.icon,
+                      text: category.name,
+                      SelectedFgColor: ColorsManegerLightMode.input,
+                      UnSelectedFgColor: ColorsManegerLightMode.darkBlue,
+                    );
+                  },
+                ).toList(),
               ),
               SizedBox(height: 10),
               Padding(
@@ -92,19 +97,23 @@ class _AddEventState extends State<AddEvent>
                 child: Row(
                   children: [
                     Text(
-                      "Title",
+                      AppLocalizations.of(context)!.title,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ],
                 ),
               ),
-              TextFiled2(text: "Event Title", width: 343, hight: 43),
+              TextFiled2(
+                text: AppLocalizations.of(context)!.event_title,
+                width: 343,
+                hight: 43,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     Text(
-                      "Description ",
+                      AppLocalizations.of(context)!.description,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ],
@@ -112,7 +121,11 @@ class _AddEventState extends State<AddEvent>
               ),
               SizedBox(height: 10),
 
-              TextFiled2(text: "Event Description....", width: 343, hight: 192),
+              TextFiled2(
+                text: AppLocalizations.of(context)!.event_description,
+                width: 343,
+                hight: 192,
+              ),
               SizedBox(height: 16),
               Row(
                 children: [
@@ -122,7 +135,7 @@ class _AddEventState extends State<AddEvent>
                   ),
                   SizedBox(width: 8),
                   Text(
-                    "Event Date",
+                    AppLocalizations.of(context)!.event_date,
                     style: TextStyle(
                       color: ColorsManegerLightMode.mainText,
                       fontWeight: FontWeight.w300,
@@ -159,7 +172,7 @@ class _AddEventState extends State<AddEvent>
                   ),
                   SizedBox(width: 5),
                   Text(
-                    "Event Time",
+                    AppLocalizations.of(context)!.event_time,
                     style: TextStyle(
                       color: ColorsManegerLightMode.mainText,
                       fontSize: 20,
@@ -168,7 +181,7 @@ class _AddEventState extends State<AddEvent>
                   ),
                   Spacer(),
                   Textbutton(
-                    nameOFText: "Choose time",
+                    nameOFText: AppLocalizations.of(context)!.event_date,
                     onDo: () async {
                       final newTime = await showTimePicker(
                         context: context,
@@ -186,8 +199,14 @@ class _AddEventState extends State<AddEvent>
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Boutton(color: ColorsManegerLightMode.darkBlue, name: "Add Event", image: "", textColor: Colors.white, onDo: () {},),
-              )
+                child: Boutton(
+                  color: ColorsManegerLightMode.darkBlue,
+                  name: AppLocalizations.of(context)!.add_event,
+                  image: "",
+                  textColor: Colors.white,
+                  onDo: () {},
+                ),
+              ),
             ],
           ),
         ),
