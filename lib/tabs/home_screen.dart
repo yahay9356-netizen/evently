@@ -20,7 +20,8 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
   late TabController _controller;
   int tabIndex = 0;
-String time=DateFormat.d().add_MMM().format(DateTime.now());
+  String time = DateFormat.d().add_MMM().format(DateTime.now());
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +48,7 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
                     Column(
                       children: [
                         Text(
-        AppLocalizations.of(context)!.welcome_back,
+                          AppLocalizations.of(context)!.welcome_back,
                           style: TextStyle(
                             color: ColorsManegerLightMode.secText,
                             fontSize: 20,
@@ -55,7 +56,10 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
                         ),
                         Text(
                           "yahay Mohamed",
-                          style: Theme.of(context).textTheme.titleLarge,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .titleLarge,
                         ),
                       ],
                     ),
@@ -92,7 +96,11 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
               tabAlignment: TabAlignment.start,
               indicatorColor: Colors.transparent,
               dividerColor: Colors.transparent,
-              tabs: CategoryModel.getSubCategory(context).asMap().entries.map((entry) {
+              tabs: CategoryModel
+                  .getSubCategory(context)
+                  .asMap()
+                  .entries
+                  .map((entry) {
                 int index = entry.key;
                 var category = entry.value;
                 return CustomTabBar(
@@ -119,9 +127,9 @@ String time=DateFormat.d().add_MMM().format(DateTime.now());
                     event: EventModel(
                       catigory: CategoryModel.getSubCategory(context)[0],
                       titile: "Meeting for Updating The Development Method ",
-                      date:time,
+                      date: time,
                       description:
-                          "Meeting for Updating The Development Method ",
+                      "Meeting for Updating The Development Method ",
                       time: TimeOfDay.now(),
                     ),
                   );

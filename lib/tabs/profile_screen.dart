@@ -2,8 +2,10 @@ import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../l10n/app_localizations.dart';
+import '../provider/config_provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,26 +15,26 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isDarkMode = false;
-
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ConfigProvider>(context);
+    bool isDark = provider.currentTheme == ThemeMode.dark;
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 26),
+              const SizedBox(height: 26),
               ClipRRect(
                 borderRadius: BorderRadius.circular(90),
                 child: Image.asset("assets/Route profile.png"),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text(
                 "yahay Mohamed",
                 style: Theme.of(context).textTheme.displaySmall,
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 "yahayMohamed@gmail.com",
                 style: GoogleFonts.poppins(
@@ -41,38 +43,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
+
               Container(
-                width: 400,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
                 height: 48,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
                   border: Border.all(color: Theme.of(context).dividerColor),
                 ),
                 child: Row(
                   children: [
                     Text(
-                    AppLocalizations.of(context)!.dark,
+                      AppLocalizations.of(context)!.dark,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Spacer(),
-                    FlutterSwitch(
-                      value: isDarkMode,
-                      onToggle: (value) {
-                        setState(() => isDarkMode = value);
-                      },
-                    ),
+                    const Spacer(),
+                    Switch(value: isDark, onChanged: (isdark) {
+                      provider.changeTheme(isdark ? ThemeMode.dark : ThemeMode.light);
+                    }),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
-                width: 400,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
                 height: 48,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
                   border: Border.all(color: Theme.of(context).dividerColor),
                 ),
                 child: Row(
@@ -81,38 +85,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AppLocalizations.of(context)!.language,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     PopupMenuButton<String>(
                       onSelected: (value) {
-
                       },
                       itemBuilder: (BuildContext context) {
                         return [
-                          PopupMenuItem<String>(
-                            value: "English",
+                          const PopupMenuItem<String>(
+                            value: "en",
                             child: Text("English"),
                           ),
-                          PopupMenuItem<String>(
-                            value: "Arabic",
-                            child: Text("Arabic"),
+                          const PopupMenuItem<String>(
+                            value: "ar",
+                            child: Text("العربية"),
                           ),
                         ];
                       },
-                      child: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: ColorsManegerLightMode.darkBlue,
+                      child: Row(
+                        children: [
+                          Text(
+                            provider.currentLanguage == "en" ? "English" : "العربية",
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: ColorsManegerLightMode.darkBlue,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: ColorsManegerLightMode.darkBlue,
+                            size: 16,
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
+
               Container(
-                width: 400,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
                 height: 48,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
                   border: Border.all(color: Theme.of(context).dividerColor),
                 ),
                 child: Row(
@@ -121,7 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       AppLocalizations.of(context)!.logout,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Icon(
                       Icons.door_back_door,
                       color: ColorsManegerLightMode.red,
