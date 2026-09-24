@@ -1,4 +1,5 @@
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
+import 'package:enntly/screens/login_screan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,9 +63,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const Spacer(),
-                    Switch(value: isDark, onChanged: (isdark) {
-                      provider.changeTheme(isdark ? ThemeMode.dark : ThemeMode.light);
-                    }),
+                    Switch(
+                      value: isDark,
+                      onChanged: (isdark) {
+                        provider.changeTheme(
+                          isdark ? ThemeMode.dark : ThemeMode.light,
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -88,6 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const Spacer(),
                     PopupMenuButton<String>(
                       onSelected: (value) {
+                        provider.changeLanguage(value);
                       },
                       itemBuilder: (BuildContext context) {
                         return [
@@ -104,11 +111,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         children: [
                           Text(
-                            provider.currentLanguage == "en" ? "English" : "العربية",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: ColorsManegerLightMode.darkBlue,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            provider.currentLanguage == "en"
+                                ? "English"
+                                : "العربية",
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
+                                  color: ColorsManegerLightMode.darkBlue,
+                                  fontWeight: FontWeight.w600,
+                                ),
                           ),
                           const SizedBox(width: 8),
                           Icon(
@@ -141,9 +151,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const Spacer(),
-                    Icon(
-                      Icons.door_back_door,
-                      color: ColorsManegerLightMode.red,
+                    // Icon(
+                    //   Icons.door_back_door,
+                    //   color: ColorsManegerLightMode.red,
+                    // ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Loginscreean(),
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.door_back_door,
+                        color: ColorsManegerLightMode.red,
+                      ),
                     ),
                   ],
                 ),

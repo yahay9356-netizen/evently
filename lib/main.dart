@@ -1,5 +1,10 @@
 import 'package:enntly/core/theme_maneger.dart';
 import 'package:enntly/mainlayout.dart';
+import 'package:enntly/onboarding/First_screen.dart';
+import 'package:enntly/onboarding/fourth_screen.dart';
+import 'package:enntly/onboarding/onbording.dart';
+import 'package:enntly/onboarding/scound_screen.dart';
+import 'package:enntly/onboarding/third_screen.dart';
 import 'package:enntly/provider/config_provider.dart';
 import 'package:enntly/screens/add_event.dart';
 import 'package:enntly/tabs/favorit_screen.dart';
@@ -32,7 +37,7 @@ class Eventlyapp extends StatelessWidget {
 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: Loginscreean.name,
+        initialRoute: Onbording.name,
         localizationsDelegates: [
           AppLocalizations.delegate,
 
@@ -47,6 +52,11 @@ class Eventlyapp extends StatelessWidget {
           Resisterscreen.name: (context) => Resisterscreen(),
           AddEvent.name: (context) => AddEvent(),
           Homescreen.name: (context) => Homescreen(),
+          FirstScreen.name: (context) => FirstScreen(),
+          ScoundScreen.name: (context) => ScoundScreen(),
+          ThirdScreen.name: (context) => ThirdScreen(),
+          FourthScreen.name: (context) => FourthScreen(),
+          Onbording.name: (context) => Onbording(),
         },
         theme: ThemeManeger.lightTheme,
         darkTheme: ThemeManeger.darkTheme,
