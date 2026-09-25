@@ -17,7 +17,8 @@ class Textbutton extends StatelessWidget {
       onPressed: onDo,
       child: Text(
         "$nameOFText ",
-        style: TextStyle(
+        style:
+        TextStyle(
           color: ColorsManegerLightMode.darkBlue,
           fontSize: 20,
           fontWeight: FontWeight.w600,

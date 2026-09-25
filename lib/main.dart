@@ -5,6 +5,7 @@ import 'package:enntly/onboarding/fourth_screen.dart';
 import 'package:enntly/onboarding/onbording.dart';
 import 'package:enntly/onboarding/scound_screen.dart';
 import 'package:enntly/onboarding/third_screen.dart';
+import 'package:enntly/prefce_maneger/prefs_maneger.dart';
 import 'package:enntly/provider/config_provider.dart';
 import 'package:enntly/screens/add_event.dart';
 import 'package:enntly/tabs/favorit_screen.dart';
@@ -18,7 +19,9 @@ import 'package:provider/provider.dart';
 
 import 'l10n/app_localizations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await prefsManager.init();
   runApp(
     ChangeNotifierProvider(
       create: (context) => ConfigProvider(),
@@ -32,21 +35,20 @@ class Eventlyapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ConfigProvider>(context);
     return ScreenUtilPlusInit(
       designSize: Size(375, 812),
-
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: Onbording.name,
         localizationsDelegates: [
           AppLocalizations.delegate,
-
           GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
-        locale: Locale(Provider.of<ConfigProvider>(context).currentLanguage),
+        locale: Locale(provider.currentLanguage),
         routes: {
           Loginscreean.name: (context) => Loginscreean(),
           Resisterscreen.name: (context) => Resisterscreen(),
@@ -60,8 +62,7 @@ class Eventlyapp extends StatelessWidget {
         },
         theme: ThemeManeger.lightTheme,
         darkTheme: ThemeManeger.darkTheme,
-
-        themeMode: Provider.of<ConfigProvider>(context).currentTheme,
+        themeMode: provider.currentTheme,
       ),
     );
   }

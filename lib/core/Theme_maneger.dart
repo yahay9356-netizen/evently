@@ -51,6 +51,11 @@ class ThemeManeger {
         color: ColorsManegerLightMode.mainText,
         fontWeight: FontWeight.w600,
       ),
+      displaySmall: GoogleFonts.poppins(
+        color: ColorsManegerLightMode.mainText,
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
       labelSmall: GoogleFonts.poppins(
         color: ColorsManegerDark.mainColor,
         fontWeight: FontWeight.w300,
@@ -58,9 +63,9 @@ class ThemeManeger {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: ColorsManegerLightMode.mainText,
+      fillColor: ColorsManegerLightMode.input,
       hintStyle: TextStyle(
-        color: ColorsManegerLightMode.storke,
+        color: ColorsManegerLightMode.secText,
         fontSize: 20,
         fontWeight: FontWeight.w500,
       ),
@@ -70,7 +75,7 @@ class ThemeManeger {
       ),
       focusedBorder: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
-        borderSide: BorderSide(color: ColorsManegerLightMode.storke, width: 2),
+        borderSide: BorderSide(color: ColorsManegerLightMode.darkBlue, width: 2),
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -106,6 +111,11 @@ class ThemeManeger {
         fontSize: 16,
         fontWeight: FontWeight.w600,
       ),
+      displaySmall: GoogleFonts.poppins(
+        color: ColorsManegerDark.input,
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
       labelMedium: GoogleFonts.poppins(
         color: ColorsManegerDark.input,
         fontWeight: FontWeight.w500,
@@ -120,37 +130,37 @@ class ThemeManeger {
       ),
     ),
     appBarTheme: AppBarTheme(backgroundColor: ColorsManegerDark.mainBackground),
-    cardColor: ColorsManegerLightMode.input,
+    cardColor: ColorsManegerDark.mainColor,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: ColorsManegerLightMode.storke,
+      fillColor: ColorsManegerDark.mainColor,
       hintStyle: TextStyle(
-        color: ColorsManegerLightMode.secText,
+        color: ColorsManegerDark.secColor,
         fontSize: 20,
         fontWeight: FontWeight.w400,
       ),
       enabledBorder: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
         borderSide: BorderSide(
-          color: ColorsManegerDark.mainBackground,
+          color: ColorsManegerDark.storke,
           width: 2,
         ),
       ),
       focusedBorder: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
         borderSide: BorderSide(
-          color: ColorsManegerDark.mainBackground,
+          color: ColorsManegerDark.input,
           width: 2,
         ),
       ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: ColorsManegerDark.mainBackground,
-      selectedItemColor: ColorsManegerLightMode.darkBlue,
+      selectedItemColor: ColorsManegerDark.input,
       type: BottomNavigationBarType.fixed,
-      unselectedItemColor: ColorsManegerLightMode.secText,
+      unselectedItemColor: ColorsManegerDark.secColor,
     ),
     cardTheme: CardThemeData(color: ColorsManegerDark.mainColor),
-    dividerTheme: DividerThemeData(color: ColorsManegerDark.mainBackground),
+    dividerTheme: DividerThemeData(color: ColorsManegerDark.storke),
   );
 }

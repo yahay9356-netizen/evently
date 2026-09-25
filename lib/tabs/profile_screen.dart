@@ -1,4 +1,5 @@
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
+import 'package:enntly/prefce_maneger/prefs_maneger.dart';
 import 'package:enntly/screens/login_screan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -151,10 +152,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const Spacer(),
-                    // Icon(
-                    //   Icons.door_back_door,
-                    //   color: ColorsManegerLightMode.red,
-                    // ),
                     IconButton(
                       onPressed: () {
                         Navigator.push(

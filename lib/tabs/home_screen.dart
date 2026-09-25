@@ -5,14 +5,14 @@ import 'package:enntly/models/catigory_model.dart';
 import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../l10n/app_localizations.dart';
+import '../provider/config_provider.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
 
   static const String name = "Home screen";
-
   @override
   State<Homescreen> createState() => _HomescreenState();
 }
@@ -31,6 +31,8 @@ class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final categories = CategoryModel.getSubCategory(context);
+    ConfigProvider provider=Provider.of<ConfigProvider>(context);
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -70,16 +72,26 @@ class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
                   Icons.light_mode_outlined,
                   color: ColorsManegerLightMode.darkBlue,
                 ),
-                Card(
-                  color: ColorsManegerLightMode.darkBlue,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 6,
-                      horizontal: 8,
-                    ),
-                    child: Text(
-                      "En",
-                      style: TextStyle(color: ColorsManegerLightMode.input),
+                InkWell(
+                  onTap: () {
+                    if(provider.currentLanguage=="en"){
+                      provider.changeLanguage("Ar");
+                    }
+                    else if(provider.currentLanguage=="Ar"){
+                      provider.changeLanguage("en");
+                    }
+                  },
+                  child: Card(
+                    color: ColorsManegerLightMode.darkBlue,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 8,
+                      ),
+                      child: Text(
+                        "En",
+                        style: TextStyle(color: ColorsManegerLightMode.input),
+                      ),
                     ),
                   ),
                 ),
