@@ -5,12 +5,18 @@ import 'package:enntly/provider/config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'onbording.dart';
+
 class FirstScreen extends StatelessWidget {
   static const String name = "Fisrst screen ";
+  bool  ifBouttonselectLang=true;
+  bool ifBouutonselectTheme=true;
+  // const FirstScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<ConfigProvider>(context);
+    bool isDark = provider.currentTheme == ThemeMode.dark;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -27,7 +33,7 @@ class FirstScreen extends StatelessWidget {
                     Text(
                       "Personalize Your Experience",
                       style: TextStyle(
-                        color: ColorsManegerDark.mainColor,
+                        color: isDark ? Colors.white : ColorsManegerDark.mainColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w300,
                       ),
@@ -42,7 +48,7 @@ class FirstScreen extends StatelessWidget {
                   child: Text(
                     "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
                     style: TextStyle(
-                      color: ColorsManegerDark.secColor,
+                      color: isDark ? Colors.white70 : ColorsManegerDark.secColor,
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
                     ),
@@ -57,7 +63,7 @@ class FirstScreen extends StatelessWidget {
                     Text(
                       "Language",
                       style: TextStyle(
-                        color: ColorsManegerDark.mainBackground,
+                        color: isDark ? Colors.white : ColorsManegerLightMode.darkBlue,
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),
@@ -69,6 +75,7 @@ class FirstScreen extends StatelessWidget {
                       image: "",
                       textColor: ColorsManegerLightMode.backGround,
                       onDo: () {
+                        
                         provider.changeLanguage("en");
                       },
                     ),
@@ -93,7 +100,7 @@ class FirstScreen extends StatelessWidget {
                     Text(
                       "Theme",
                       style: TextStyle(
-                        color: ColorsManegerLightMode.darkBlue,
+                        color: isDark ? Colors.white : ColorsManegerLightMode.darkBlue,
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
@@ -104,11 +111,19 @@ class FirstScreen extends StatelessWidget {
                       color: ColorsManegerLightMode.darkBlue,
                       image: "assets/sun.png",
                       textColor: Colors.black,
-                      onDo: () {},
+                      onDo: () {
+                        if (provider.currentTheme == ThemeMode.dark) {
+                          provider.changeTheme(ThemeMode.light);
+                        }
+                      },
                     ),
                     SizedBox(width: 15),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (provider.currentTheme == ThemeMode.light) {
+                          provider.changeTheme(ThemeMode.dark);
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                       ),
@@ -125,7 +140,9 @@ class FirstScreen extends StatelessWidget {
                   color: ColorsManegerLightMode.darkBlue,
                   image: "",
                   textColor: ColorsManegerLightMode.storke,
-                  onDo: () {},
+                  onDo: () {
+                    Navigator.pushNamed(context, Onbording.name);
+                  },
                 ),
               ),
             ],

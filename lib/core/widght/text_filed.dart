@@ -21,6 +21,7 @@ class Textfiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.always,
       controller: controller,
       validator: validator,
       textAlignVertical: TextAlignVertical.center,

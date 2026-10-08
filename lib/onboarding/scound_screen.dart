@@ -3,18 +3,22 @@ import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/elvatet_boutton.dart';
 import 'package:enntly/onboarding/onbording.dart';
 import 'package:enntly/onboarding/third_screen.dart';
+import 'package:enntly/provider/config_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 class ScoundScreen extends StatelessWidget {
   const ScoundScreen({super.key});
   static const String name = "Scound screen";
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ConfigProvider>(context);
+    bool isDark = provider.currentTheme == ThemeMode.dark;
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-
               Image.asset("assets/logo.png"),
               Image.asset("assets/hot-trending.png"),
               Row(
@@ -37,7 +41,7 @@ class ScoundScreen extends StatelessWidget {
                       child: Text(
                         "Find Events That Inspire You",
                         style: TextStyle(
-                          color: ColorsManegerLightMode.mainText,
+                          color: isDark ? Colors.white : ColorsManegerLightMode.mainText,
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
                         ),
@@ -52,7 +56,7 @@ class ScoundScreen extends StatelessWidget {
                   child: Text(
                     "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.",
                     style: TextStyle(
-                      color: ColorsManegerLightMode.secText,
+                      color: isDark ? Colors.white70 : ColorsManegerLightMode.secText,
                       fontSize: 20,
                       fontWeight: FontWeight.w200,
                     ),

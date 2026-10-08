@@ -1,8 +1,11 @@
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/elvatet_boutton.dart';
 import 'package:enntly/onboarding/onbording.dart';
+import 'package:enntly/provider/config_provider.dart';
+import 'package:enntly/screens/login_screan.dart';
 import 'package:enntly/tabs/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../mainlayout.dart';
 
@@ -11,6 +14,8 @@ class FourthScreen extends StatelessWidget {
   static const String name = "fourth screen";
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ConfigProvider>(context);
+    bool isDark = provider.currentTheme == ThemeMode.dark;
     return Scaffold(
       body: Center(
         child: SafeArea(
@@ -37,7 +42,7 @@ class FourthScreen extends StatelessWidget {
                       child: Text(
                         "Connect with Friends & Share Moments",
                         style: TextStyle(
-                          color: ColorsManegerLightMode.mainText,
+                          color: isDark ? Colors.white : ColorsManegerLightMode.mainText,
                           fontSize: 22,
                           fontWeight: FontWeight.w600,
                         ),
@@ -52,7 +57,7 @@ class FourthScreen extends StatelessWidget {
                 child: Text(
                   "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.",
                   style: TextStyle(
-                    color: ColorsManegerLightMode.secText,
+                    color: isDark ? Colors.white70 : ColorsManegerLightMode.secText,
                     fontSize: 20,
                     fontWeight: FontWeight.w200,
                   ),
@@ -67,8 +72,7 @@ class FourthScreen extends StatelessWidget {
                   image: "",
                   textColor: ColorsManegerLightMode.input,
                   onDo: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Mainlayout()));
-                    // Navigator.pushNamed(context, Mainlayout.name_main);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Loginscreean()));
                   },
                 ),
               ),

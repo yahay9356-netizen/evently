@@ -3,6 +3,7 @@ import 'package:enntly/core/widght/event.dart';
 import 'package:enntly/core/widght/tab_bar.dart';
 import 'package:enntly/models/catigory_model.dart';
 import 'package:enntly/models/event_model.dart';
+import 'package:enntly/prefce_maneger/prefs_maneger.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,7 @@ class _HomescreenState extends State<Homescreen> with TickerProviderStateMixin {
                         horizontal: 8,
                       ),
                       child: Text(
-                        "En",
+                        provider.currentLanguage,
                         style: TextStyle(color: ColorsManegerLightMode.input),
                       ),
                     ),

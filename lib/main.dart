@@ -12,16 +12,22 @@ import 'package:enntly/tabs/favorit_screen.dart';
 import 'package:enntly/tabs/home_screen.dart';
 import 'package:enntly/screens/login_screan.dart';
 import 'package:enntly/screens/resister.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil_plus/flutter_screenutil_plus.dart';
 import 'package:provider/provider.dart';
 
+import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await prefsManager.init();
+  await   Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     ChangeNotifierProvider(
       create: (context) => ConfigProvider(),
@@ -40,7 +46,7 @@ class Eventlyapp extends StatelessWidget {
       designSize: Size(375, 812),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: Onbording.name,
+        initialRoute: FirstScreen.name,
         localizationsDelegates: [
           AppLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

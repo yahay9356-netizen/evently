@@ -7,7 +7,7 @@ import 'l10n/app_localizations.dart';
 
 class Mainlayout extends StatefulWidget {
   const Mainlayout({super.key});
- static const String name_main="Mainlayout";
+  static const String name_main = "Mainlayout";
 
   @override
   State<Mainlayout> createState() => _MainlayoutState();
@@ -31,15 +31,15 @@ class _MainlayoutState extends State<Mainlayout> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(index == 0 ? Icons.home : Icons.home_outlined),
-            label: AppLocalizations.of(context)!.home
+            label: AppLocalizations.of(context)!.home,
           ),
           BottomNavigationBarItem(
             icon: Icon(index == 1 ? Icons.favorite : Icons.favorite_border),
-            label: AppLocalizations.of(context)!.favorite
+            label: AppLocalizations.of(context)!.favorite,
           ),
           BottomNavigationBarItem(
             icon: Icon(index == 2 ? Icons.person : Icons.person_2_outlined),
-            label: AppLocalizations.of(context)!.profile
+            label: AppLocalizations.of(context)!.profile,
           ),
         ],
       ),
