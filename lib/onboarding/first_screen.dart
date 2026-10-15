@@ -1,6 +1,7 @@
 import 'package:enntly/core/Colors/colors_maneger_dark.dart';
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/elvatet_boutton.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 import 'package:enntly/provider/config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,14 +10,14 @@ import 'onbording.dart';
 
 class FirstScreen extends StatelessWidget {
   static const String name = "Fisrst screen ";
-  bool  ifBouttonselectLang=true;
-  bool ifBouutonselectTheme=true;
-  // const FirstScreen({super.key});
+
+  FirstScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<ConfigProvider>(context);
     bool isDark = provider.currentTheme == ThemeMode.dark;
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -24,14 +25,14 @@ class FirstScreen extends StatelessWidget {
             children: [
               Image.asset("assets/logo.png"),
               Image.asset("assets/being-creative (1).png"),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
                     Text(
-                      "Personalize Your Experience",
+                      l10n?.personalizeYourExperience ?? "Personalize Your Experience",
                       style: TextStyle(
                         color: isDark ? Colors.white : ColorsManegerDark.mainColor,
                         fontSize: 20,
@@ -41,12 +42,13 @@ class FirstScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Expanded(
                   child: Text(
-                    "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
+                    l10n?.personalizeYourExperienceDesc ??
+                        "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
                     style: TextStyle(
                       color: isDark ? Colors.white70 : ColorsManegerDark.secColor,
                       fontSize: 20,
@@ -55,57 +57,56 @@ class FirstScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
                     Text(
-                      "Language",
+                      l10n?.language ?? "Language",
                       style: TextStyle(
                         color: isDark ? Colors.white : ColorsManegerLightMode.darkBlue,
                         fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Boutton(
                       name: "English",
                       color: ColorsManegerLightMode.darkBlue,
                       image: "",
                       textColor: ColorsManegerLightMode.backGround,
                       onDo: () {
-                        
                         provider.changeLanguage("en");
                       },
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Boutton(
                       name: "Arabic",
                       color: ColorsManegerLightMode.darkBlue,
                       image: "",
                       textColor: ColorsManegerDark.input,
                       onDo: () {
-                        provider.changeLanguage("Ar");
+                        provider.changeLanguage("ar");
                       },
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
                     Text(
-                      "Theme",
+                      l10n?.dark ?? "Theme",
                       style: TextStyle(
                         color: isDark ? Colors.white : ColorsManegerLightMode.darkBlue,
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Boutton(
                       name: "",
                       color: ColorsManegerLightMode.darkBlue,
@@ -117,7 +118,7 @@ class FirstScreen extends StatelessWidget {
                         }
                       },
                     ),
-                    SizedBox(width: 15),
+                    const SizedBox(width: 15),
                     ElevatedButton(
                       onPressed: () {
                         if (provider.currentTheme == ThemeMode.light) {
@@ -132,11 +133,11 @@ class FirstScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Boutton(
-                  name: "Let’s start",
+                  name: l10n?.letsStart ?? "Let's start",
                   color: ColorsManegerLightMode.darkBlue,
                   image: "",
                   textColor: ColorsManegerLightMode.storke,

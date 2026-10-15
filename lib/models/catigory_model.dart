@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../l10n/app_localizations.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 
 class CategoryModel {
   CategoryModel({required this.name, required this.icon, required this.id});

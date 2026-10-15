@@ -1,13 +1,13 @@
+import 'package:enntly/core/Colors/colors_maneger_dark.dart';
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/event.dart';
-import 'package:enntly/core/widght/text_filed.dart';
 import 'package:enntly/models/catigory_model.dart';
 import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../l10n/app_localizations.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 
 class FavoritScreen extends StatefulWidget {
   const FavoritScreen({super.key});
@@ -17,10 +17,11 @@ class FavoritScreen extends StatefulWidget {
 }
 
 class _FavoritScreenState extends State<FavoritScreen> {
-  String time=DateFormat.d().add_MMM().format(DateTime.now());
+  String time = DateFormat.d().add_MMM().format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -28,22 +29,34 @@ class _FavoritScreenState extends State<FavoritScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+
+                style: TextStyle(
+                  color: isDark ? Colors.white : ColorsManegerLightMode.mainText,
+                ),
                 decoration: InputDecoration(
-                  fillColor: ColorsManegerLightMode.storke,
-                  hintText: AppLocalizations.of(context)!.search_for_event,
+                  filled: true,
+                  fillColor: isDark ? ColorsManegerDark.surfaceColor : ColorsManegerLightMode.storke,
+                  hintText: AppLocalizations.of(context)!.searchForEvent,
                   hintStyle: GoogleFonts.poppins(
-                    color: ColorsManegerLightMode.secText,
+                    color: isDark ? Colors.white60 : ColorsManegerLightMode.secText,
                     fontSize: 14,
                     fontWeight: FontWeight.w300,
                   ),
-                  suffixIcon: Icon(Icons.search),
+                  suffixIcon: Icon(
+                    Icons.search,
+                    color: isDark ? Colors.white70 : ColorsManegerLightMode.secText,
+                  ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(14)),
-                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: const BorderRadius.all(Radius.circular(14)),
+                    borderSide: BorderSide(
+                      color: isDark ? ColorsManegerDark.storke : Colors.transparent,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(14)),
-                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: const BorderRadius.all(Radius.circular(14)),
+                    borderSide: BorderSide(
+                      color: isDark ? Colors.white38 : Colors.transparent,
+                    ),
                   ),
                 ),
               ),
@@ -51,17 +64,16 @@ class _FavoritScreenState extends State<FavoritScreen> {
             Expanded(
               child: ListView.separated(
                 itemCount: 16,
-                separatorBuilder: (context, index) => SizedBox(height: 20),
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                separatorBuilder: (context, index) => const SizedBox(height: 20),
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 itemBuilder: (context, index) {
                   return Event(
                     event: EventModel(
+                      id: null,
                       catigory: CategoryModel.getSubCategory(context)[0],
-                      titile:
-                          "Meeting for Updating The Development Method ",
-                      date:time,
-                      description:
-                          "Meeting for Updating The Development Method ",
+                      titile: "Meeting for Updating The Development Method ",
+                      date: time,
+                      description: "Meeting for Updating The Development Method ",
                       time: TimeOfDay.now(),
                     ),
                   );

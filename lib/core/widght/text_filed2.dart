@@ -7,10 +7,14 @@ class TextFiled2 extends StatelessWidget {
     required this.text,
     required this.width,
     required this.hight,
+    this.controller,
   });
+
   final String text;
   final double width;
   final double hight;
+  final TextEditingController? controller;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,6 +23,7 @@ class TextFiled2 extends StatelessWidget {
         height: hight,
         width: width,
         child: TextField(
+          controller: controller,
           textAlignVertical: TextAlignVertical.top,
           textAlign: TextAlign.start,
           maxLines: null,
@@ -28,19 +33,19 @@ class TextFiled2 extends StatelessWidget {
             filled: true,
             hintText: text,
             fillColor: ColorsManegerLightMode.storke,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               color: ColorsManegerLightMode.secText,
               fontSize: 16,
               fontWeight: FontWeight.w600,
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(12)),
               borderSide: BorderSide(
                 width: 1,
                 color: ColorsManegerLightMode.input,
               ),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(12)),
               borderSide: BorderSide(
                 width: 1,

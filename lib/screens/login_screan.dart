@@ -23,6 +23,7 @@ class Loginscreean extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return ChangeNotifierProvider(
       create: (context) => AuthProvider(),
       child: Consumer<AuthProvider>(
@@ -40,14 +41,12 @@ class Loginscreean extends StatelessWidget {
                       Image.asset("assets/logo.png"),
                       const SizedBox(height: 50),
                       Text(
-                        AppLocalizations.of(context)!.log_in_to_your_account,
+                        l10n?.logInToYourAccount ?? "",
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
                       const SizedBox(height: 24),
                       Textfiled(
-                        hintText: AppLocalizations.of(
-                          context,
-                        )!.enter_your_email,
+                        hintText: l10n?.enterYourEmail ?? "",
                         prefixIcon: Icons.email,
                         suffixIcon: null,
                         controller: emailcontroller,
@@ -62,9 +61,7 @@ class Loginscreean extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Textfiled(
-                        hintText: AppLocalizations.of(
-                          context,
-                        )!.enter_your_password,
+                        hintText: l10n?.enterYourPassword ?? "",
                         prefixIcon: Icons.visibility,
                         suffixIcon: Icons.lock,
                         controller: passwordcontroller,
@@ -81,9 +78,7 @@ class Loginscreean extends StatelessWidget {
                         children: [
                           const Spacer(),
                           Textbutton(
-                            nameOFText: AppLocalizations.of(
-                              context,
-                            )!.forgot_password,
+                            nameOFText: l10n?.forgotPassword ?? "",
                             onDo: () {
                               Navigator.push(
                                 context,
@@ -98,7 +93,7 @@ class Loginscreean extends StatelessWidget {
                       authProvider.isloading
                           ? const Center(child: CircularProgressIndicator())
                           : Boutton(
-                              name: AppLocalizations.of(context)!.login,
+                              name: l10n?.login ?? "",
                               color: ColorsManegerLightMode.darkBlue,
                               textColor: ColorsManegerLightMode.backGround,
                               image: "",
@@ -114,7 +109,7 @@ class Loginscreean extends StatelessWidget {
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Mainlayout(),
+                                        builder: (context) => const Mainlayout(),
                                       ),
                                     );
                                   }
@@ -126,7 +121,7 @@ class Loginscreean extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.dont_have_an_account,
+                            l10n?.dontHaveAnAccount ?? "",
                             style: TextStyle(
                               color: ColorsManegerLightMode.secText,
                               fontSize: 14,
@@ -134,7 +129,7 @@ class Loginscreean extends StatelessWidget {
                             ),
                           ),
                           Textbutton(
-                            nameOFText: AppLocalizations.of(context)!.sing_up,
+                            nameOFText: l10n?.singUp ?? "",
                             onDo: () {
                               Navigator.push(
                                 context,
@@ -146,56 +141,42 @@ class Loginscreean extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 40),
-                      Text(
-                        "Or",
-                        style: TextStyle(
-                          color: ColorsManegerLightMode.darkBlue,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: authProvider.isloading
-                            ? null
-                            : () async {
-                                await authProvider.loginWithGoogle(
-                                  context: context,
-                                );
-
-                                if (authProvider.user != null &&
-                                    context.mounted) {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Mainlayout(),
-                                    ),
-                                  );
-                                }
-                              },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorsManegerLightMode.storke,
-                        ),
-                        child: authProvider.isloading
-                            ? const CircularProgressIndicator()
-                            : Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset("assets/logo of Google.png"),
-                                  const SizedBox(width: 10),
-                                  Text(
-                                    "Sign in with Google",
-                                    style: TextStyle(
-                                      color: ColorsManegerLightMode.darkBlue,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                        onPressed: () async {
+                          await authProvider.loginWithGoogle(context: context);
+                          if (authProvider.user != null && context.mounted) {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Mainlayout(),
                               ),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorsManegerLightMode.input,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/logo of Google.png"),
+                            const SizedBox(width: 10),
+                            Text(
+                              l10n?.signupWithGoogle ?? "",
+                              style: TextStyle(
+                                color: ColorsManegerLightMode.darkBlue,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
+                      const SizedBox(height: 40),
                     ],
                   ),
                 ),

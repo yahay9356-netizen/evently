@@ -1,12 +1,10 @@
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
-import 'package:enntly/prefce_maneger/prefs_maneger.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 import 'package:enntly/screens/login_screan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import '../l10n/app_localizations.dart';
 import '../provider/config_provider.dart';
 
 class ProfileScreen extends StatefulWidget {

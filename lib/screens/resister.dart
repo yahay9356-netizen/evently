@@ -3,10 +3,10 @@ import 'package:enntly/core/Colors/colors_maneger_light.dart';
 import 'package:enntly/core/widght/elvatet_boutton.dart';
 import 'package:enntly/core/widght/text_button.dart';
 import 'package:enntly/core/widght/text_filed.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../l10n/app_localizations.dart';
 import '../mainlayout.dart';
 
 class Resisterscreen extends StatefulWidget {
@@ -36,6 +36,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return ChangeNotifierProvider(
       create: (context) => AuthProvider(),
       child: Scaffold(
@@ -48,13 +49,13 @@ class _ResisterscreenState extends State<Resisterscreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     Image.asset("assets/logo.png"),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        AppLocalizations.of(context)!.create_account,
+                        l10n?.createAccount ?? "",
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
@@ -63,7 +64,7 @@ class _ResisterscreenState extends State<Resisterscreen> {
                       ),
                     ),
                     Textfiled(
-                      hintText: AppLocalizations.of(context)!.enter_your_name,
+                      hintText: l10n?.enterYourName ?? "",
                       prefixIcon: Icons.person,
                       suffixIcon: null,
                       controller: namecontroller,
@@ -74,9 +75,9 @@ class _ResisterscreenState extends State<Resisterscreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Textfiled(
-                      hintText: AppLocalizations.of(context)!.enter_your_email,
+                      hintText: l10n?.enterYourEmail ?? "",
                       suffixIcon: null,
                       prefixIcon: Icons.email,
                       controller: emailcontroller,
@@ -89,11 +90,9 @@ class _ResisterscreenState extends State<Resisterscreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Textfiled(
-                      hintText: AppLocalizations.of(
-                        context,
-                      )!.enter_your_password,
+                      hintText: l10n?.enterYourPassword ?? "",
                       suffixIcon: Icons.visibility_off,
                       prefixIcon: Icons.lock,
                       controller: passwordcontroller,
@@ -108,9 +107,9 @@ class _ResisterscreenState extends State<Resisterscreen> {
                         }
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Textfiled(
-                      hintText: AppLocalizations.of(context)!.confirm_password,
+                      hintText: l10n?. confirmPassword ?? "",
                       suffixIcon: Icons.visibility_off,
                       prefixIcon: Icons.lock,
                       controller: confirmpasswordcontroller,
@@ -126,11 +125,11 @@ class _ResisterscreenState extends State<Resisterscreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 52),
+                    const SizedBox(height: 52),
                     provider.isloading
-                        ? Center(child: CircularProgressIndicator())
+                        ? const Center(child: CircularProgressIndicator())
                         : Boutton(
-                            name: AppLocalizations.of(context)!.sing_up,
+                            name: l10n?.sprts ?? "",
                             color: ColorsManegerLightMode.darkBlue,
                             image: "",
                             textColor: ColorsManegerLightMode.backGround,
@@ -153,12 +152,12 @@ class _ResisterscreenState extends State<Resisterscreen> {
                               }
                             },
                           ),
-                    SizedBox(height: 42),
+                    const SizedBox(height: 42),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.already_have_an_account,
+                          l10n?.alreadyHaveAnAccount ?? "",
                           style: TextStyle(
                             color: ColorsManegerLightMode.secText,
                             fontSize: 20,
@@ -168,13 +167,12 @@ class _ResisterscreenState extends State<Resisterscreen> {
                         Textbutton(
                           nameOFText: "Login",
                           onDo: () {
-                            
                             Navigator.pop(context);
                           },
                         ),
                       ],
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                   ],
                 ),
               );

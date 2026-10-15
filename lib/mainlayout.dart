@@ -3,7 +3,7 @@ import 'package:enntly/tabs/home_screen.dart';
 import 'package:enntly/tabs/profile_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'l10n/app_localizations.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 
 class Mainlayout extends StatefulWidget {
   const Mainlayout({super.key});

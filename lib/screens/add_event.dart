@@ -1,12 +1,14 @@
 import 'package:enntly/core/Colors/colors_maneger_light.dart';
+import 'package:enntly/core/widght/elvatet_boutton.dart';
 import 'package:enntly/core/widght/tab_bar.dart';
 import 'package:enntly/core/widght/text_button.dart';
 import 'package:enntly/core/widght/text_filed2.dart';
+import 'package:enntly/l10n/app_localizations.dart';
 import 'package:enntly/models/catigory_model.dart';
+import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
 
-import '../core/widght/elvatet_boutton.dart';
-import '../l10n/app_localizations.dart';
+import '../serves/db_serves.dart';
 
 class AddEvent extends StatefulWidget {
   const AddEvent({super.key});
@@ -16,7 +18,9 @@ class AddEvent extends StatefulWidget {
   @override
   State<AddEvent> createState() => _AddEventState();
 }
-
+TextEditingController EventTitle = TextEditingController();
+TextEditingController EventDescription = TextEditingController();
+GlobalKey<FormState> EventKey = GlobalKey<FormState>();
 class _AddEventState extends State<AddEvent>
     with SingleTickerProviderStateMixin {
   int tabindex = 0;
@@ -38,176 +42,186 @@ class _AddEventState extends State<AddEvent>
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryModel.getSubCategory(context);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-                  SizedBox(width: 120),
-                  Text(AppLocalizations.of(context)!.add_event),
-                ],
-              ),
-              Container(
-                width: 343,
-                height: 193,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/image 8.png"),
-                    fit: BoxFit.fill,
-                  ),
-                  borderRadius: BorderRadius.circular(16),
+          child:
+          Form(
+            key: EventKey,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+                    const SizedBox(width: 120),
+                    Text(AppLocalizations.of(context)!.addEvent),
+                  ],
                 ),
-              ),
-              SizedBox(height: 16),
-              TabBar(
-                onTap: (index) {
-                  setState(() {
-                    tabindex = index;
-                  });
-                },
-                isScrollable: true,
-                controller: controller,
-                tabAlignment: TabAlignment.start,
-                indicatorColor: Colors.transparent,
-                dividerColor: Colors.transparent,
-                tabs: CategoryModel.getSubCategory(context).asMap().entries.map(
-                  (entry) {
-                    int index = entry.key;
-                    var category = entry.value;
-                    return CustomTabBar(
-                      selelectedColor: ColorsManegerLightMode.darkBlue,
-                      unselelectedColor: ColorsManegerLightMode.input,
-                      selectedTextColor: ColorsManegerLightMode.input,
-                      unselectedTextColor: ColorsManegerLightMode.mainText,
-                      isSelelected: tabindex == index,
-                      icon: category.icon,
-                      text: category.name,
-                      SelectedFgColor: ColorsManegerLightMode.input,
-                      UnSelectedFgColor: ColorsManegerLightMode.darkBlue,
-                    );
+                Container(
+                  width: 343,
+                  height: 193,
+                  decoration: BoxDecoration(
+                    image: const DecorationImage(
+                      image: AssetImage("assets/image 8.png"),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TabBar(
+                  onTap: (index) {
+                    setState(() {
+                      tabindex = index;
+                    });
                   },
-                ).toList(),
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
+                  isScrollable: true,
+                  controller: controller,
+                  tabAlignment: TabAlignment.start,
+                  indicatorColor: Colors.transparent,
+                  dividerColor: Colors.transparent,
+                  tabs: CategoryModel.getSubCategory(context).asMap().entries.map(
+                    (entry) {
+                      int index = entry.key;
+                      var category = entry.value;
+                      return CustomTabBar(
+                        selelectedColor: ColorsManegerLightMode.darkBlue,
+                        unselelectedColor: ColorsManegerLightMode.input,
+                        selectedTextColor: ColorsManegerLightMode.input,
+                        unselectedTextColor: ColorsManegerLightMode.mainText,
+                        isSelelected: tabindex == index,
+                        icon: category.icon,
+                        text: category.name,
+                        SelectedFgColor: ColorsManegerLightMode.input,
+                        UnSelectedFgColor: ColorsManegerLightMode.darkBlue,
+                      );
+                    },
+                  ).toList(),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.title,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                TextFiled2(
+
+                  text: AppLocalizations.of(context)!.eventTitle,
+                  width: 343,
+                  hight: 43,
+                  controller: EventTitle,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.description,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+                TextFiled2(
+                  controller:EventDescription,
+                  text: AppLocalizations.of(context)!.eventDescription,
+                  width: 343,
+                  hight: 192,
+                ),
+                const SizedBox(height: 16),
+                Row(
                   children: [
+                    const Icon(
+                      Icons.edit_calendar,
+                      color: ColorsManegerLightMode.darkBlue,
+                    ),
+                    const SizedBox(width: 8),
                     Text(
-                      AppLocalizations.of(context)!.title,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      AppLocalizations.of(context)!.eventDate,
+                      style: const TextStyle(
+                        color: ColorsManegerLightMode.mainText,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const Spacer(),
+
+                    Textbutton(
+                      nameOFText: AppLocalizations.of(context)!.chooseDate,
+                      onDo: () async {
+                        DateTime? newdate = await showDatePicker(
+                          context: context,
+                          initialDate: dateTime,
+                          firstDate: dateTime,
+                          lastDate: DateTime(2100),
+                        );
+                        if (newdate == null) {
+                          return;
+                        }
+                        setState(() {
+                          dateTime = newdate;
+                        });
+                      },
                     ),
                   ],
                 ),
-              ),
-              TextFiled2(
-                text: AppLocalizations.of(context)!.event_title,
-                width: 343,
-                hight: 43,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
+                const SizedBox(height: 10),
+                Row(
                   children: [
+                    const Icon(
+                      Icons.access_time,
+                      color: ColorsManegerLightMode.darkBlue,
+                    ),
+                    const SizedBox(width: 5),
                     Text(
-                      AppLocalizations.of(context)!.description,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      AppLocalizations.of(context)!.eventTime,
+                      style: const TextStyle(
+                        color: ColorsManegerLightMode.mainText,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    const Spacer(),
+                    Textbutton(
+                      nameOFText: AppLocalizations.of(context)!.choseeTime,
+                      onDo: () async {
+                        final newTime = await showTimePicker(
+                          context: context,
+                          initialTime: timeNow,
+                        );
+                        if (newTime == null) {
+                          return;
+                        }
+                        setState(() {
+                          timeNow = newTime;
+                        });
+                      },
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 10),
-
-              TextFiled2(
-                text: AppLocalizations.of(context)!.event_description,
-                width: 343,
-                hight: 192,
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Icon(
-                    Icons.edit_calendar,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Boutton(
                     color: ColorsManegerLightMode.darkBlue,
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    AppLocalizations.of(context)!.event_date,
-                    style: TextStyle(
-                      color: ColorsManegerLightMode.mainText,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20,
-                    ),
-                  ),
-                  Spacer(),
-
-                  Textbutton(
-                    nameOFText: "Choose date",
+                    name: AppLocalizations.of(context)!.addEvent,
+                    image: "",
+                    textColor: Colors.white,
                     onDo: () async {
-                      DateTime? newdate = await showDatePicker(
-                        context: context,
-                        initialDate: dateTime,
-                        firstDate: dateTime,
-                        lastDate: DateTime(2000000000000000000),
-                      );
-                      if (newdate == null) {
-                        return;
-                      }
-                      setState(() {
-                        dateTime = newdate;
-                      });
+                     await DbServes.addEvent(EventModel(catigory: categories[tabindex], titile: EventTitle.text, date: dateTime.toString(), description: EventDescription.text, id: null, time: timeNow));
                     },
                   ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Icon(
-                    Icons.access_time,
-                    color: ColorsManegerLightMode.darkBlue,
-                  ),
-                  SizedBox(width: 5),
-                  Text(
-                    AppLocalizations.of(context)!.event_time,
-                    style: TextStyle(
-                      color: ColorsManegerLightMode.mainText,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  Spacer(),
-                  Textbutton(
-                    nameOFText: AppLocalizations.of(context)!.event_date,
-                    onDo: () async {
-                      final newTime = await showTimePicker(
-                        context: context,
-                        initialTime: timeNow,
-                      );
-                      if (newTime == null) {
-                        return;
-                      }
-                      setState(() {
-                        timeNow = newTime;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Boutton(
-                  color: ColorsManegerLightMode.darkBlue,
-                  name: AppLocalizations.of(context)!.add_event,
-                  image: "",
-                  textColor: Colors.white,
-                  onDo: () {},
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
