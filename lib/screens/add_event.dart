@@ -7,6 +7,7 @@ import 'package:enntly/l10n/app_localizations.dart';
 import 'package:enntly/models/catigory_model.dart';
 import 'package:enntly/models/event_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../serves/db_serves.dart';
 
@@ -18,15 +19,19 @@ class AddEvent extends StatefulWidget {
   @override
   State<AddEvent> createState() => _AddEventState();
 }
+
 TextEditingController EventTitle = TextEditingController();
 TextEditingController EventDescription = TextEditingController();
 GlobalKey<FormState> EventKey = GlobalKey<FormState>();
+
 class _AddEventState extends State<AddEvent>
     with SingleTickerProviderStateMixin {
   int tabindex = 0;
   late final TabController controller;
   DateTime dateTime = DateTime.now();
   TimeOfDay timeNow = TimeOfDay.now();
+  bool isDateSelected = false;
+  bool isTimeSelected = false;
 
   @override
   void initState() {
@@ -46,14 +51,18 @@ class _AddEventState extends State<AddEvent>
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child:
-          Form(
+          child: Form(
             key: EventKey,
             child: Column(
               children: [
                 Row(
                   children: [
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back),
+                    ),
                     const SizedBox(width: 120),
                     Text(AppLocalizations.of(context)!.addEvent),
                   ],
@@ -112,7 +121,6 @@ class _AddEventState extends State<AddEvent>
                   ),
                 ),
                 TextFiled2(
-
                   text: AppLocalizations.of(context)!.eventTitle,
                   width: 343,
                   hight: 43,
@@ -130,83 +138,97 @@ class _AddEventState extends State<AddEvent>
                   ),
                 ),
                 const SizedBox(height: 10),
-
                 TextFiled2(
-                  controller:EventDescription,
+                  controller: EventDescription,
                   text: AppLocalizations.of(context)!.eventDescription,
                   width: 343,
                   hight: 192,
                 ),
                 const SizedBox(height: 16),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.edit_calendar,
-                      color: ColorsManegerLightMode.darkBlue,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      AppLocalizations.of(context)!.eventDate,
-                      style: const TextStyle(
-                        color: ColorsManegerLightMode.mainText,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 20,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.edit_calendar,
+                        color: ColorsManegerLightMode.darkBlue,
                       ),
-                    ),
-                    const Spacer(),
-
-                    Textbutton(
-                      nameOFText: AppLocalizations.of(context)!.chooseDate,
-                      onDo: () async {
-                        DateTime? newdate = await showDatePicker(
-                          context: context,
-                          initialDate: dateTime,
-                          firstDate: dateTime,
-                          lastDate: DateTime(2100),
-                        );
-                        if (newdate == null) {
-                          return;
-                        }
-                        setState(() {
-                          dateTime = newdate;
-                        });
-                      },
-                    ),
-                  ],
+                      const SizedBox(width: 8),
+                      Text(
+                        AppLocalizations.of(context)!.eventDate,
+                        style: const TextStyle(
+                          color: ColorsManegerLightMode.mainText,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const Spacer(),
+                      Flexible(
+                        child: Textbutton(
+                          nameOFText: isDateSelected
+                              ? DateFormat('dd/MM/yyyy').format(dateTime)
+                              : AppLocalizations.of(context)!.chooseDate,
+                          onDo: () async {
+                            DateTime? newdate = await showDatePicker(
+                              context: context,
+                              initialDate: dateTime,
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(2100),
+                            );
+                            if (newdate == null) {
+                              return;
+                            }
+                            setState(() {
+                              dateTime = newdate;
+                              isDateSelected = true;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.access_time,
-                      color: ColorsManegerLightMode.darkBlue,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      AppLocalizations.of(context)!.eventTime,
-                      style: const TextStyle(
-                        color: ColorsManegerLightMode.mainText,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w300,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.access_time,
+                        color: ColorsManegerLightMode.darkBlue,
                       ),
-                    ),
-                    const Spacer(),
-                    Textbutton(
-                      nameOFText: AppLocalizations.of(context)!.choseeTime,
-                      onDo: () async {
-                        final newTime = await showTimePicker(
-                          context: context,
-                          initialTime: timeNow,
-                        );
-                        if (newTime == null) {
-                          return;
-                        }
-                        setState(() {
-                          timeNow = newTime;
-                        });
-                      },
-                    ),
-                  ],
+                      const SizedBox(width: 5),
+                      Text(
+                        AppLocalizations.of(context)!.eventTime,
+                        style: const TextStyle(
+                          color: ColorsManegerLightMode.mainText,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                      const Spacer(),
+                      Flexible(
+                        child: Textbutton(
+                          nameOFText: isTimeSelected
+                              ? timeNow.format(context)
+                              : AppLocalizations.of(context)!.choseeTime,
+                          onDo: () async {
+                            final newTime = await showTimePicker(
+                              context: context,
+                              initialTime: timeNow,
+                            );
+                            if (newTime == null) {
+                              return;
+                            }
+                            setState(() {
+                              timeNow = newTime;
+                              isTimeSelected = true;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -216,7 +238,22 @@ class _AddEventState extends State<AddEvent>
                     image: "",
                     textColor: Colors.white,
                     onDo: () async {
-                     await DbServes.addEvent(EventModel(catigory: categories[tabindex], titile: EventTitle.text, date: dateTime.toString(), description: EventDescription.text, id: null, time: timeNow));
+                      String formattedDate = DateFormat('dd/MM/yyyy').format(dateTime);
+                      await DbServes.addEvent(
+                        EventModel(
+                          catigory: categories[tabindex],
+                          titile: EventTitle.text,
+                          date: formattedDate,
+                          description: EventDescription.text,
+                          id: null,
+                          time: timeNow,
+                        ),
+                      );
+                      if (context.mounted) {
+                        EventTitle.clear();
+                        EventDescription.clear();
+                        Navigator.pop(context);
+                      }
                     },
                   ),
                 ),
